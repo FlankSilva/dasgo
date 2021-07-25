@@ -9,16 +9,28 @@ interface TableProps {
 
 export const Table = ({ sizes, head, data }: TableProps) => {
   const [newData, setNewData] = useState(data)
+  const [selected, setSelected] = useState('')
   const keys = Object.keys(data[0])
 
   const orderTable = (item) => {
     const newData = [...data]
-      
-    const newLocations = newData.sort((a, b) => {       
-      return a[item] < b[item] ? -1 : a[item] > b[item] ? 1 : 0
-    })
 
-    setNewData(newLocations)
+    if(selected === item) {
+      const newLocations = newData.sort((a, b) => {       
+        return a[item] > b[item] ? -1 : a[item] < b[item] ? 1 : 0
+      })
+      setNewData(newLocations)
+      setSelected('')
+    } else {
+      const newLocations = newData.sort((a, b) => {       
+        return a[item] < b[item] ? -1 : a[item] > b[item] ? 1 : 0
+      })
+      setNewData(newLocations)
+      setSelected(item)
+    }
+
+      
+
   }
 
 

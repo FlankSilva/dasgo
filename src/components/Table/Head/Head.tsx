@@ -6,7 +6,7 @@ export const Head = ({ keys = [], head = {}, sizes = [], orderTable }) => {
       <tr>
         {keys.map((item, index) => 
           <th 
-            style={{ minWidth: sizes[index], textAlign: 'start' }} 
+            style={{ minWidth: sizes[index], textAlign: 'start', cursor: 'pointer' }} 
             key={index}
             onClick={() => 
               orderTable(keys[index])
