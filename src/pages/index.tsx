@@ -46,12 +46,15 @@ export default function Home() {
 
   return (
    <Flex 
-    w="100vh" 
+    w="100%" 
     h="100vh" 
     align="center" 
     justify="center"
   >
-    <Form onSubmit={handleSubmit} formRef={formRef}>
+    <Form 
+      onSubmit={handleSubmit} 
+      formRef={formRef
+    }>
       <Stack spacing="4">
         <Input 
           id="email"

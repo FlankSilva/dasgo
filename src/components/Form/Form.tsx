@@ -1,8 +1,5 @@
 import React, { useRef } from 'react'
-import { FormHandles } from '@unform/core';
-
 import { Form as FormStyled } from './styles'
-
 interface FormProps {
   w?: string;
   maxW?: string;
