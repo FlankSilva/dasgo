@@ -1,11 +1,17 @@
-export const Head = ({ keys = [], head = {}, sizes = [] }) => {
+export const Head = ({ keys = [], head = {}, sizes = [], orderTable }) => {
   const tableHead = head || {}
 
   return (
     <thead>
       <tr>
         {keys.map((item, index) => 
-          <th style={{ width: sizes[index], textAlign: 'start' }} key={index}>
+          <th 
+            style={{ minWidth: sizes[index], textAlign: 'start' }} 
+            key={index}
+            onClick={() => 
+              orderTable(keys[index])
+            }
+          >
             {tableHead[item] || item}
           </th> 
         )}
