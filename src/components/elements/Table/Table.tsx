@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
+import { Table as ChakraTable, Tbody } from '@chakra-ui/react'
+
 import { Head } from './Head'
 import { Row } from './Row'
+import { Pagination } from '../Pagination'
 interface TableProps {
   data: any; 
   head?: object;
@@ -16,7 +19,7 @@ export const Table = ({ sizes, head, data }: TableProps) => {
     const newData = [...data]
 
     if(selected === item) {
-      const newLocations = newData.sort((a, b) => {       
+      const newLocations = newData.sort((a, b) => { 
         return a[item] > b[item] ? -1 : a[item] < b[item] ? 1 : 0
       })
       setNewData(newLocations)
@@ -28,20 +31,22 @@ export const Table = ({ sizes, head, data }: TableProps) => {
       setNewData(newLocations)
       setSelected(item)
     }
-
-      
-
   }
 
 
   return (
-    <table>
-      <Head {...{ keys, head, sizes, orderTable }}/>
-      <tbody>
-        {newData.map((item, index) => (
-          <Row key={index} {...{item, sizes}}/>
-        ))}
-      </tbody>
-    </table>
+    <>
+      <ChakraTable 
+        colorScheme="whiteAlpha"
+      >
+        <Head {...{ keys, head, sizes, orderTable }}/>
+        <Tbody>
+          {newData.map((item, index) => (
+            <Row key={index} {...{item, sizes}}/>
+          ))}
+        </Tbody>
+      </ChakraTable>
+      <Pagination />
+    </>
   )
 }

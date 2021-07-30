@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useRef, FormHTMLAttributes } from 'react'
 import { Form as FormStyled } from './styles'
-interface FormProps {
+interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   w?: string;
   maxW?: string;
   bg?: string;
@@ -13,8 +13,8 @@ interface FormProps {
 
 export const Form = ({ 
   w='100%', 
-  maxW='360px', 
-  bg='#1f2029', 
+  maxW, 
+  bg='#2d2e38', 
   borderRadius='8px',
   padding='32px',
   onSubmit,
@@ -26,6 +26,7 @@ export const Form = ({
   return (
     <FormStyled
       ref={formRef}
+      autoComplete="off"
       onSubmit={onSubmit}
       bg={bg}
       maxW={maxW}

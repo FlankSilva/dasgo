@@ -1,6 +1,3 @@
-import { Flex } from '@chakra-ui/react'
-import { Table } from '../components/Table'
-
 export const data = [
   {
     id: 1, 
@@ -10,6 +7,7 @@ export const data = [
     number: 4,
     city: 'Campinas',
     state: 'SP',
+    email: 'flank.silva.0@gmail.com'
   },
   {
     id: 2, 
@@ -19,6 +17,7 @@ export const data = [
     number: 4,
     city: 'Campinas',
     state: 'SP',
+    email: 'flank.silva.0@gmail.com'
   },
   {
     id: 3, 
@@ -28,6 +27,7 @@ export const data = [
     number: 4,
     city: 'Campinas',
     state: 'SP',
+    email: 'flank.silva.0@gmail.com'
   },
   {
     id: 4, 
@@ -37,10 +37,11 @@ export const data = [
     number: 4,
     city: 'Campinas',
     state: 'SP',
+    email: 'flank.silva.0@gmail.com'
   },
 ]
 
-const head = {
+export const head = {
   id: 'Ident.',
   name: 'Nome',
   last: 'Sobre Nome',
@@ -50,17 +51,4 @@ const head = {
   state: 'Estado',
 }
 
-const sizes = ['70px', '100px', '120px', '120px', '70px', '120px', '50px']
-
-export default function Tabela() {
-  return (
-    <Flex
-      border="1px solid"
-      w={300}
-      overflow="hidden"
-      overflowX="auto"
-    >
-      <Table {...{ data, head, sizes }} />
-    </Flex>
-  )
-}
+export const sizes = ['70px', '100px', '120px', '120px', '70px', '120px', '50px']
