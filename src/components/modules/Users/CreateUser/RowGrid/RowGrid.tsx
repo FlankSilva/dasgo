@@ -4,7 +4,7 @@ export const RowGrid = ({children}: any) => {
   return (
     <SimpleGrid
       minChildWidth="240px"
-      spacing="8"
+      spacing={["6", "8"]}
       w="100%"
     >
       {children}

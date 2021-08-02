@@ -14,12 +14,13 @@ export const Table = ({ sizes, head, data }: TableProps) => {
   const [newData, setNewData] = useState(data)
   const [selected, setSelected] = useState('')
   const keys = Object.keys(data[0])
+  
 
   const orderTable = (item) => {
     const newData = [...data]
 
     if(selected === item) {
-      const newLocations = newData.sort((a, b) => { 
+      const newLocations = newData.sort((a, b) => {         
         return a[item] > b[item] ? -1 : a[item] < b[item] ? 1 : 0
       })
       setNewData(newLocations)
@@ -36,11 +37,14 @@ export const Table = ({ sizes, head, data }: TableProps) => {
 
   return (
     <>
-      <ChakraTable 
+      <ChakraTable
         colorScheme="whiteAlpha"
       >
         <Head {...{ keys, head, sizes, orderTable }}/>
-        <Tbody>
+        <Tbody 
+          overflowX="auto"
+          overflowY="auto"
+        >
           {newData.map((item, index) => (
             <Row key={index} {...{item, sizes}}/>
           ))}

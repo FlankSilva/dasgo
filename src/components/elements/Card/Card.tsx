@@ -11,7 +11,8 @@ export const Card = ({ title ,children }: CardProps) => {
     flex="1" 
     borderRadius={8}
     bg="gray.800"
-    p="8"
+    p={["6", "8"]}
+    overflow="hidden"
   >
     {title && (
       <>

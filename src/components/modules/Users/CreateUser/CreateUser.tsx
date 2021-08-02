@@ -6,15 +6,20 @@ import { DefaultLayout } from "../../../elements/DefaultLayout"
 import { Form } from '../../../elements/Form'
 import { Input } from '../../../elements/Form/Input'
 import { RowGrid } from "./RowGrid"
+import Link from "next/link"
 
 export const CreateUser = () => {
   const formRef = useRef<FormHandles>(null);
+
+  const handleSubmit = (data) => {    
+    console.log(data);
+  }
 
   return (
     <DefaultLayout>
       <Card title="Criar Usuário">
         <Form
-          onSubmit={() => {}} 
+          onSubmit={handleSubmit} 
           formRef={formRef}
           bg="transparent"
         >
@@ -47,10 +52,12 @@ export const CreateUser = () => {
           </VStack>
           <Flex mt="8" justify="flex-end">
             <HStack spacing="4">
-              <Button colorScheme="whiteAlpha">
-                Cancelar
-              </Button>
-              <Button colorScheme="pink">
+              <Link href="/users" passHref>
+                <Button colorScheme="whiteAlpha">
+                  Cancelar
+                </Button>
+              </Link>
+              <Button type="submit" colorScheme="pink">
                 Salvar
               </Button>
             </HStack>

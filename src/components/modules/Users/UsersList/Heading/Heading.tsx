@@ -1,4 +1,5 @@
 import { Button, Flex, Heading as ChakraHeading, Icon } from "@chakra-ui/react"
+import Link from "next/link"
 import { RiAddLine } from "react-icons/ri"
 
 export const Heading = () => {
@@ -14,15 +15,17 @@ export const Heading = () => {
       >
         Usuários
       </ChakraHeading>
-      <Button
-        as="a"
-        size="sm"
-        fontSize="sm"
-        colorScheme="pink"
-        leftIcon={<Icon as={RiAddLine}/>}
-      >
-        Criar novo
-      </Button>
+      <Link href="/users/create" passHref>
+        <Button
+          as="a"
+          size="sm"
+          fontSize="sm"
+          colorScheme="pink"
+          leftIcon={<Icon as={RiAddLine}/>}
+        >
+          Criar novo
+        </Button>
+      </Link>
     </Flex>
   )
 }

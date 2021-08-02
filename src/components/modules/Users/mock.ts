@@ -39,6 +39,28 @@ export const data = [
     state: 'SP',
     email: 'flank.silva.0@gmail.com'
   },
+
+  
+  {
+    id: 4, 
+    name: 'Flank',
+    last: 'Silva',
+    address: 'Rua 1',
+    number: 4,
+    city: 'Campinas',
+    state: 'SP',
+    email: 'flank.silva.0@gmail.com'
+  },
+  {
+    id: 4, 
+    name: 'Flank',
+    last: 'Silva',
+    address: 'Rua 1',
+    number: 4,
+    city: 'Campinas',
+    state: 'SP',
+    email: 'flank.silva.0@gmail.com'
+  },
 ]
 
 export const head = {
