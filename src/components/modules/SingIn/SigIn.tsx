@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import * as Yup from 'yup'
 
 import { Form } from '../../elements/Form'
-import { Input, InputMask } from '../../elements/Form/Input'
+import { Input } from '../../elements/Form/Input'
 import { Button } from '../../elements/Form/Button'
 import getValidationErrors from '../../../utils/getValidationError';
 import { schema } from './scremaValidation';

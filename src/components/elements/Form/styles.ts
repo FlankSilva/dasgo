@@ -3,9 +3,9 @@ import { Form as FormUnform } from '@unform/web'
 
 interface FormProps {
   w: string;
-  maxW: string;
+  maxw: string;
   bg: string;
-  borderRadius: string;
+  borderradius: string;
   padding: string;
 }
 
@@ -13,8 +13,8 @@ export const Form = styled(FormUnform)<FormProps>`
 
 background-color: ${props => props.bg};
 width: ${props => props.w};
-max-width: ${props => props.maxW};
-border-radius: ${props => props.borderRadius};
+max-width: ${props => props.maxw};
+border-radius: ${props => props.borderradius};
 padding: ${props => props.padding}
 `
 

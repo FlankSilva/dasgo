@@ -29,10 +29,10 @@ export const Form = ({
       autoComplete="off"
       onSubmit={onSubmit}
       bg={bg}
-      maxW={maxW}
+      maxw={maxW}
       w={w}
       padding={padding}
-      borderRadius={borderRadius}
+      borderradius={borderRadius}
     >
       {children}
     </FormStyled>

@@ -29,6 +29,7 @@ export const CreateUser = () => {
                 name="name"
                 label="Nome Completo"
                 id="name"
+                autoFocus
               />
                <Input
                 name="email"

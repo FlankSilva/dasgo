@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import { RiAddLine, RiPencilLine } from 'react-icons/ri'
-import { CSVLink, CSVDownload } from "react-csv";
+import { RiPencilLine } from 'react-icons/ri'
+import { AiOutlineDownload } from 'react-icons/ai'
+import { CSVLink } from "react-csv";
 import { Card } from '../../../elements/Card'
 import { Header } from '../../../elements/Header'
 import { Sidebar } from '../../../elements/Sidebar'
@@ -62,10 +63,10 @@ export const Users = () => {
         <Sidebar />
         <Card>
           <Heading />
-          <CSVLink data={data}>
-            <div style={{ width: '50px', height: '50px', backgroundColor: 'red' }}>
-
-            </div>
+          <CSVLink data={data} filename={'usuários.csv'}>
+            <Flex justifyContent="flex-end">
+              <AiOutlineDownload size={25} />
+            </Flex>
           </CSVLink>
           <Table {...{ data: dataTable, sizes, head }} />
         </Card>
