@@ -34,6 +34,8 @@ export const Input = ({ name, label, ...rest }: InputProps) => {
     });
   }, [fieldName, registerField]);
 
+  
+
   return (
     <Flex
       flexDir="column"
@@ -55,11 +57,13 @@ export const Input = ({ name, label, ...rest }: InputProps) => {
         size="lg"
         ref={inputRef}
       /> 
-      {error && (
-        <Text>
-          {error}
-        </Text>
-      )}
+      <Flex h="36px">
+        {error && (
+          <Text>
+            {error}
+          </Text>
+        )}
+      </Flex>
     </Flex>
   )
 }
@@ -81,7 +85,7 @@ export const InputMask = ({ name, label, mask, ...rest }: InputProps) => {
   )
 }
 
-export const SearchInput = () => {
+export const SearchInput = (handleOnFocus) => {
 
   return (
     <Flex

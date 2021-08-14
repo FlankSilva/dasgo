@@ -7,12 +7,36 @@ import { Form } from '../../../elements/Form'
 import { Input } from '../../../elements/Form/Input'
 import { RowGrid } from "./RowGrid"
 import Link from "next/link"
+import * as Yup from 'yup'
+import { schema } from './schemaValidation'
+import getValidationErrors from '../../../../utils/getValidationError';
 
 export const CreateUser = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = (data) => {    
-    console.log(data);
+  const handleOnFocus = () => {
+    formRef.current?.setErrors({});
+  }
+
+  const handleSubmit = async (data) => {    
+    try {
+      handleOnFocus()
+      
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      console.log(data);
+      
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(error);
+
+        formRef.current?.setErrors(errors);
+
+        return;
+      }
+    }
   }
 
   return (
@@ -43,8 +67,10 @@ export const CreateUser = () => {
                 name="password"
                 label="Senha"
                 id="password"
+                type="password"
               />
                <Input
+                type="password"
                 name="password_confirmation"
                 label="Confirmação da senha"
                 id="password_confirmation"

@@ -7,7 +7,7 @@ import { Form } from '../../elements/Form'
 import { Input } from '../../elements/Form/Input'
 import { Button } from '../../elements/Form/Button'
 import getValidationErrors from '../../../utils/getValidationError';
-import { schema } from './scremaValidation';
+import { schema } from './schemaValidation';
 
 interface SignInFormData {
   email: string;
