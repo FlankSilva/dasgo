@@ -64,13 +64,9 @@ export const data = [
 ]
 
 export const head = {
-  id: 'Ident.',
+  id: '',
   name: 'Nome',
-  last: 'Sobre Nome',
-  address: 'Endereço',
-  number: 'Nº',
-  city: 'Cidade',
-  state: 'Estado',
+  createdAt: 'Cadastro'
 }
 
-export const sizes = ['70px', '100px', '120px', '120px', '70px', '120px', '50px']
+export const sizes = ['70px', '20px', '80px', '40px']

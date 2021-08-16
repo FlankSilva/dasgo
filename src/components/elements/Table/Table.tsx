@@ -46,7 +46,7 @@ export const Table = ({ sizes, head, data }: TableProps) => {
           overflowY="auto"
         >
           {newData.map((item, index) => (
-            <Row key={index} {...{item, sizes}}/>
+            <Row key={index} {...{item, size: sizes[index]}}/>
           ))}
         </Tbody>
       </ChakraTable>

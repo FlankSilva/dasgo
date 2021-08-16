@@ -3,7 +3,7 @@ import { Checkbox, Th, Thead, Tr } from "@chakra-ui/react"
 
 export const Head = ({ keys = [], head = {}, sizes = [], orderTable }) => {
   const tableHead = head || {}
-
+  
   return (
     <Thead>
       <Tr>
