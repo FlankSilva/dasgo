@@ -50,7 +50,11 @@ export const Table = ({ sizes, head, data }: TableProps) => {
           ))}
         </Tbody>
       </ChakraTable>
-      <Pagination />
+      <Pagination 
+        totalCountOfRegisters={200}
+        currentPage={4}
+        onPageChange={() => {}}
+      />
     </>
   )
 }

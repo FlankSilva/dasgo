@@ -33,7 +33,6 @@ export const Users = () => {
       })
       setDataTable(formatedData)
     }
-
   }, [dataT])
   
   return (

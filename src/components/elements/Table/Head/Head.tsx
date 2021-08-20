@@ -19,6 +19,7 @@ export const Head = ({ keys = [], head = {}, sizes = [], orderTable }) => {
           } else {
             return (
               <Th
+                fontSize="18px"
                 style={{ minWidth: sizes[index], textAlign: 'start', cursor: 'pointer' }} 
                 key={index}
                 onClick={() => 

@@ -1,6 +1,33 @@
-import { Box, Button, Stack } from "@chakra-ui/react"
+import { FC } from "react"
+import { Box, Button, Flex, Stack, Text } from "@chakra-ui/react"
+import { generatePagesArray } from "./generatePagesArray"
+import { PaginationItem } from "./PaginationItem"
 
-export const Pagination = () => {
+interface PaginationProps {
+  totalCountOfRegisters:  number;
+  registersPerPage?: number;
+  currentPage?: number;
+  onPageChange: (page: number) => void;
+}
+
+const siblingsCount = 1
+
+export const Pagination: FC<PaginationProps> = ({ 
+  totalCountOfRegisters, 
+  registersPerPage = 10, 
+  currentPage = 1,
+  onPageChange
+}) => {
+  const lastPage = Math.floor(totalCountOfRegisters / registersPerPage) //Ultima pagina que tenho
+
+  const previousPages = currentPage > 1
+    ? generatePagesArray(currentPage - 1 - siblingsCount, currentPage - 1)
+    : []
+
+  const nextPages = currentPage < lastPage
+  ? generatePagesArray(currentPage, Math.min(currentPage + siblingsCount, lastPage))
+  : []
+
   return (
     <Stack 
       direction="row"
@@ -13,52 +40,37 @@ export const Pagination = () => {
         <strong>0</strong> - <strong>10</strong> de <strong>100</strong>
       </Box>
       <Stack direction="row" spacing="2">
-        <Button 
-          size="sm"
-          fontSize="xs"
-          width="4"
-          colorScheme="pink"
-          disabled
-          _disabled={{
-            bgColor: 'pink.500',
-            cursor: 'default'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          size="sm"
-          fontSize="xs"
-          width="4"
-          bg="gray.700"
-          _hover={{
-            bg: "gray.500"
-          }}
-        >
-          2
-        </Button>
-        <Button 
-          size="sm"
-          fontSize="xs"
-          width="4"
-          bg="gray.700"
-          _hover={{
-            bg: "gray.500"
-          }}
-        >
-          3
-        </Button>
-        <Button 
-          size="sm"
-          fontSize="xs"
-          width="4"
-          bg="gray.700"
-          _hover={{
-            bg: "gray.500"
-          }}
-        >
-          4
-        </Button>
+        {currentPage > (1 + siblingsCount) && (
+          <>
+            <PaginationItem number={1} />
+            { currentPage > (2 + siblingsCount) && (
+              <Flex alignItems="flex-end">
+                <Text color="gray.300" width="8" textAlign="center" >...</Text>
+              </Flex>
+            )}
+          </>
+        )}
+
+        {previousPages.length > 0 && previousPages.map(page => {
+          return <PaginationItem key={page} number={page} />
+        })}
+
+        <PaginationItem number={currentPage} isCurrent />
+        
+        {nextPages.length > 0 && nextPages.map(page => {
+          return <PaginationItem key={page} number={page} />
+        })}
+
+        {(currentPage + siblingsCount) < lastPage && (
+          <>
+          { (currentPage + 1 + siblingsCount) < lastPage && (
+            <Flex alignItems="flex-end">
+              <Text color="gray.300" width="8" textAlign="center" >...</Text>
+            </Flex>
+          )}
+            <PaginationItem number={lastPage} />
+          </>
+        )}
       </Stack>
     </Stack>
   )
