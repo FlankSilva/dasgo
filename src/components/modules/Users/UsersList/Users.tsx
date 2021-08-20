@@ -1,71 +1,28 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react'
-import { RiPencilLine } from 'react-icons/ri'
-import { AiOutlineDownload } from 'react-icons/ai'
-import { CSVLink } from "react-csv";
-import { useQuery } from 'react-query'
+import { Box, Flex } from '@chakra-ui/react'
 
 import { Card } from '../../../elements/Card'
 import { Header } from '../../../elements/Header'
 import { Sidebar } from '../../../elements/Sidebar'
 import { Table } from '../../../elements/Table'
 import { Heading } from './Heading'
+import { Name, ButtonEdit } from './FormattedData'
 
 import { sizes, head } from '../mock'
+import { useUseus } from '../../../../services/hooks/users/useUsers';
+import { CSV } from './CSV';
 
 export const Users = () => {
   const [dataTable, setDataTable] = useState([])  
 
-  const { data: dataT, isLoading, error } = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users')
-    const data = await response.json()
-
-    const users = data.users.map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        })
-      }
-    })
-    
-    return users
-  }, {
-    staleTime: 1000 * 5 // Tempo de carregamento dos dados
-  })  
+  const { data: dataT, isLoading, isFetched, error } = useUseus()
 
   useEffect(() => {
     if (dataT?.length) {
 
       const formatedData = dataT?.map(item => {
-        const name = (
-          <Box>
-            <Text fontWeight="bold">
-              {item.name}
-            </Text>
-            <Text fontSize="sm" color="gray.300">
-              {item.email}
-            </Text>
-          </Box>
-        )
-    
-        const buttonEdit = (
-          <Button 
-            as="a" 
-            size="sm" 
-            fontSize="sm" 
-            colorScheme="purple"
-            leftIcon={<Icon as={RiPencilLine}/>}
-            onClick={() => console.log(item.id)}
-            cursor="pointer"
-          >
-            Editar
-          </Button>
-        )
+        const name = <Name name={item.name} email={item.email} />
+        const buttonEdit = <ButtonEdit id={item.id}/>
     
         return {
           id : item.id,
@@ -92,13 +49,9 @@ export const Users = () => {
         
         <Sidebar />
         <Card>
-          <Heading />
+          <Heading isLoading={isLoading && isFetched}/>
           {!isLoading && (
-            <CSVLink data={dataT} filename={'usuários.csv'}>
-              <Flex justifyContent="flex-end">
-                <AiOutlineDownload size={25} />
-              </Flex>
-            </CSVLink>
+            <CSV dataT={dataT}/>
           )}
           {dataTable.length && (
            <Table {...{ data: dataTable, sizes, head }} />

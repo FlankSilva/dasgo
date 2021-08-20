@@ -1,8 +1,12 @@
-import { Button, Flex, Heading as ChakraHeading, Icon } from "@chakra-ui/react"
+import { Button, Flex, Heading as ChakraHeading, Icon, Spinner } from "@chakra-ui/react"
 import Link from "next/link"
 import { RiAddLine } from "react-icons/ri"
 
-export const Heading = () => {
+interface HeadingProps {
+  isLoading?: boolean;
+}
+
+export const Heading: React.FC<HeadingProps> = ({ isLoading }) => {
   return (
     <Flex
       mb="8"
@@ -15,6 +19,9 @@ export const Heading = () => {
       >
         Usuários
       </ChakraHeading>
+      {isLoading && (
+        <Spinner size="sm" color="gray.500" ml="4"/>
+      )}
       <Link href="/users/create" passHref>
         <Button
           as="a"

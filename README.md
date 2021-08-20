@@ -8,3 +8,4 @@
 * yarn dev
 
 
+Parei em Sinalizando refetch dos dados

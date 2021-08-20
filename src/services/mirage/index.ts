@@ -28,7 +28,7 @@ export const makeServer = () => {
     },
 
     seeds(server) { // Gerar lista de dados a partir de factories
-      server.createList('user', 200)
+      server.createList('user', 10)
     },
 
     routes() {
