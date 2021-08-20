@@ -13,14 +13,16 @@ import { useUseus } from '../../../../services/hooks/users/useUsers';
 import { CSV } from './CSV';
 
 export const Users = () => {
-  const [dataTable, setDataTable] = useState([])  
+  const [dataTable, setDataTable] = useState([]) 
+  
+  const [page, setPage] = useState(1)
 
-  const { data: dataT, isLoading, isFetched, error } = useUseus()
+  const { data: dataT, isLoading, isFetched, error } = useUseus(page)
+
 
   useEffect(() => {
-    if (dataT?.length) {
-
-      const formatedData = dataT?.map(item => {
+    if (dataT?.users?.length) {
+      const formatedData = dataT?.users?.map(item => {
         const name = <Name name={item.name} email={item.email} />
         const buttonEdit = <ButtonEdit id={item.id}/>
     
@@ -49,11 +51,18 @@ export const Users = () => {
         <Sidebar />
         <Card>
           <Heading isLoading={isLoading && isFetched}/>
-          {!isLoading && (
-            <CSV dataT={dataT}/>
-          )}
+          <CSV dataT={dataT?.users} loading={isLoading}/>
           {dataTable.length && (
-           <Table {...{ data: dataTable, sizes, head }} />
+           <Table {...{ 
+              data: dataTable,
+              sizes, 
+              head,
+              onPageChange: setPage,
+              page,
+              totalCountOfRegisters: dataT?.totalCount,
+              currentPage: page
+            }} 
+           />
           )}
         </Card>
       </Flex>

@@ -8,12 +8,28 @@ interface TableProps {
   data: any; 
   head?: object;
   sizes?: string[];
+  totalCountOfRegisters?:  number;
+  registersPerPage?: number;
+  currentPage?: number;
+  page: number;
+  onPageChange: (page: number) => void;
 }
 
-export const Table = ({ sizes, head, data }: TableProps) => {
-  const [newData, setNewData] = useState(data)
+export const Table = ({ 
+  sizes, 
+  head, 
+  data,
+  totalCountOfRegisters,
+  registersPerPage,
+  currentPage,
+  page,
+  onPageChange
+}: TableProps) => {
+  const [newData, setNewData] = useState([])
   const [selected, setSelected] = useState('')
   const keys = Object.keys(data[0])
+  
+  console.log(newData);
   
 
   const orderTable = (item) => {
@@ -45,15 +61,15 @@ export const Table = ({ sizes, head, data }: TableProps) => {
           overflowX="auto"
           overflowY="auto"
         >
-          {newData.map((item, index) => (
+          {data.map((item, index) => (
             <Row key={index} {...{item, size: sizes[index]}}/>
           ))}
         </Tbody>
       </ChakraTable>
       <Pagination 
-        totalCountOfRegisters={200}
-        currentPage={4}
-        onPageChange={() => {}}
+        totalCountOfRegisters={totalCountOfRegisters}
+        currentPage={currentPage}
+        onPageChange={onPageChange}
       />
     </>
   )
